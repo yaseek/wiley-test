@@ -1,6 +1,6 @@
 'use strict';
 
-let __template = 'APP';
+let __template = require('./template.html');
 
 export default {
   template: __template,
@@ -12,5 +12,4 @@ __controller.$inject = [
 ]
 
 function __controller ($log) {
-  $log.debug('APP');
 }
