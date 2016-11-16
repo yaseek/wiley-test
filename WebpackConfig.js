@@ -40,9 +40,6 @@ class WebpackConfig {
           new LessPluginAutoPrefix({browsers: [">5%"]})
         ]
       },
-      compress: {
-        warnings: false
-      },
       module: {
         loaders: [
           // https://github.com/babel/babel-loader
@@ -76,6 +73,9 @@ class WebpackConfig {
         new webpack.optimize.UglifyJsPlugin({
           // Minify only [name].min.js file
           // http://stackoverflow.com/a/34018909
+          compress: {
+            warnings: false
+          },
           include: /\.min\.js$/
         }),
         new webpack.BannerPlugin(
