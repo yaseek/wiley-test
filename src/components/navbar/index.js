@@ -13,6 +13,6 @@ __controller.$inject = [
 
 function __controller (tasks) {
 
-  this.addTask = tasks.addTask;
+  this.tasks = tasks;
 
 }

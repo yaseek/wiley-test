@@ -40,12 +40,16 @@ class WebpackConfig {
           new LessPluginAutoPrefix({browsers: [">5%"]})
         ]
       },
+      compress: {
+        warnings: false
+      },
       module: {
         loaders: [
           // https://github.com/babel/babel-loader
           {
             test: /\.js$/,
-            loader: 'babel'
+            loader: 'babel',
+            query: {compact: false}
           },
           // https://github.com/webpack/json-loader
           {test: /\.json$/, loader: 'json'},

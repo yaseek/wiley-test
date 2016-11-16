@@ -2,6 +2,9 @@
   <navbar></navbar>
 
   <div class="container main-block">
+
+    <edit-form ng-if="$ctrl.tasks.editItem" ng-model="$ctrl.tasks.editItem"></edit-form>
+
     <h2>
       <a href="#" 
         title="Sort"
@@ -16,10 +19,25 @@
       Task title
     </h2>
 
-    <div class="alert alert-info" 
-        ng-repeat="task in $ctrl.tasks.items track by $index">
+    <div class="alert"
+        ng-class="{
+          'alert-info': !task.ready,
+          'alert-success': task.ready
+        }" 
+        ng-repeat="task in $ctrl.tasks.items track by $index"
+        ng-if="!task.deleted">
+        <span class="pull-right task-controls">
+          <a href="javascript:void(0)" class="glyphicon glyphicon-pencil task-controls__control"
+            ng-if="!task.ready"
+            ng-click="$ctrl.tasks.editTask(task)"></a>
+          <a href="javascript:void(0)" class="glyphicon glyphicon-ok task-controls__control"
+            ng-if="!task.ready"
+            ng-click="$ctrl.confirmTask(task)"></a>
+          <a href="javascript:void(0)" class="glyphicon glyphicon-remove task-controls__control"
+            ng-click="$ctrl.deleteTask(task)"></a>
+        </span>
         <h4 ng-bind="task.title"></h4>
-        <div ng-bind="task.description" ng-if="task.description"></div>
+        <div ng-bind-html="task.description" ng-if="task.description"></div>
     </div>
 
   </div>

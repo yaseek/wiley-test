@@ -1,0 +1,23 @@
+<div class="user-question">
+  
+  <div class="user-question__text-block">
+    <div class="user-question__title text-center">
+      <h2 ng-bind-html="$ctrl.resolve.params.title"></h2>
+    </div>
+
+    <div class="text-center user-question__text" 
+      ng-bind-html="$ctrl.resolve.params.text"></div>
+  </div>
+
+  <div class="text-center user-question__controls">
+    <button type="button" class="btn btn-primary user-question__button"
+      ng-click="$ctrl.close()">
+      OK
+    </button>
+    <button type="button" class="btn btn-default user-question__button"
+      ng-click="$ctrl.dismiss()">
+      Cancel
+    </button>
+  </div>
+
+</div>

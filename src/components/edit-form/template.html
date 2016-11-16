@@ -1,0 +1,43 @@
+<div class="panel panel-default edit-form">
+  <div class="panel-body">
+    <form class="form-horizontal" name="editForm">
+
+      <div class="form-group">
+        <label class="col-xs-3 control-label">
+          Title of the new task
+        </label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" 
+            required ng-model="$ctrl.ngModel.title" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-xs-3 control-label">
+          Task description
+        </label>
+        <div class="col-xs-9">
+          <!--input type="text" class="form-control" 
+            required ng-model="$ctrl.ngModel.description" /-->
+          <textarea class="form-control edit-form__description" 
+            ng-model="$ctrl.ngModel.description"></textarea>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+          <button type="button" class="btn btn-primary edit-form__button"
+            ng-click="$ctrl.tasks.saveTask($ctrl.tasks.editItem)"
+            ng-disabled="editForm.$invalid">
+            Save
+          </button>
+          <button type="button" class="btn btn-default edit-form__button"
+            ng-click="$ctrl.tasks.editItem = false">
+            Cancel
+          </button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
