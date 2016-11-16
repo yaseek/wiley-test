@@ -1,5 +1,7 @@
 'use strict';
 
+require('./style.less')
+
 let __template = require('./template.html');
 
 export default {
@@ -8,8 +10,15 @@ export default {
 } 
 
 __controller.$inject = [
-  '$log'
+  '$log',
+  'tasks'
 ]
 
-function __controller ($log) {
+function __controller ($log, tasks) {
+
+  let $ctrl = this;
+
+  $ctrl.tasks = tasks;
+
+  tasks.load();
 }

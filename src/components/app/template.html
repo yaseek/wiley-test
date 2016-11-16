@@ -1,8 +1,28 @@
 <div>
   <navbar></navbar>
 
-  <div class="container">
-    <h2>TEMPLATED APP</h2>
+  <div class="container main-block">
+    <h2>
+      <a href="#" 
+        title="Sort"
+        ng-click="$ctrl.tasks.sort(!$ctrl.tasks.orderAsc)">
+        <span class="pull-right glyphicon"
+          ng-class="{
+            'glyphicon-triangle-bottom': $ctrl.tasks.orderAsc,
+            'glyphicon-triangle-top': !$ctrl.tasks.orderAsc
+            }">
+        </span>
+      </a>
+      Task title
+    </h2>
+
+    <div class="alert alert-info" 
+        ng-repeat="task in $ctrl.tasks.items track by $index">
+        <h4 ng-bind="task.title"></h4>
+        <div ng-bind="task.description" ng-if="task.description"></div>
+    </div>
+
   </div>
+
   
 </div>

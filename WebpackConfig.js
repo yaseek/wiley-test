@@ -1,7 +1,10 @@
 'use strict';
 
 // http://webpack.github.io/docs/
-let webpack = require('webpack');
+let webpack = require('webpack'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    LessPluginCleanCSS = require('less-plugin-clean-css'),
+    LessPluginAutoPrefix = require('less-plugin-autoprefix');
 
 
 class WebpackConfig {
@@ -31,6 +34,12 @@ class WebpackConfig {
 
     return {
       entry,
+      lessLoader: {
+        lessPlugins: [
+          new LessPluginCleanCSS({advanced: true}),
+          new LessPluginAutoPrefix({browsers: [">5%"]})
+        ]
+      },
       module: {
         loaders: [
           // https://github.com/babel/babel-loader
@@ -42,7 +51,14 @@ class WebpackConfig {
           {test: /\.json$/, loader: 'json'},
           // https://github.com/webpack/html-loader
           {test: /\.html$/, loader: 'raw'},
-          {test: /\.ya?ml$/, loader: 'yml'}
+          {test: /\.ya?ml$/, loader: 'yml'},
+          {
+            test: /\.less$/, 
+            loader: ExtractTextPlugin.extract(
+              'css?sourceMap!' +
+              'less?sourceMap'
+            )
+          }
         ]
       },
       devtool: 'source-map',
@@ -52,6 +68,7 @@ class WebpackConfig {
         filename: '[name].js'
       },
       plugins: [
+        new ExtractTextPlugin("styles.css"),
         new webpack.optimize.UglifyJsPlugin({
           // Minify only [name].min.js file
           // http://stackoverflow.com/a/34018909
